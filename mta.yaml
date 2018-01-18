@@ -55,6 +55,7 @@ modules:
       - name: openSAPHANA6_18-uaa
       - name: core_db
       - name: sap.hana.democontent.epm.services.images
+      - name: CROSS_SCHEMA_SFLIGHT
 resources:
   - name: openSAPHANA6_18-uaa
     type: com.sap.xs.uaa-space
@@ -92,3 +93,7 @@ resources:
       service-name: sap.hana.democontent.epm.services.images.18
     properties:
       xshttpdest-images-service-name: '${service-name}'
+  - name: CROSS_SCHEMA_SFLIGHT
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: CROSS_SCHEMA_SFLIGHT_18
