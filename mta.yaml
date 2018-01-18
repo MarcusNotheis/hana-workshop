@@ -14,6 +14,15 @@ modules:
           name: core-xsjs-backend
           url: '~{url}'
           forwardAuthToken: true
+      - name: user_xsjs_api
+        group: destinations
+        properties:
+          name: user-backend
+          url: '~{url}'
+          forwardAuthToken: true
+      - name: ui5-lib
+        properties:
+          ui5liburl: '~{url}'
   - name: core_db
     type: hdb
     path: core_db
@@ -56,6 +65,17 @@ modules:
       - name: core_db
       - name: sap.hana.democontent.epm.services.images
       - name: CROSS_SCHEMA_SFLIGHT
+  - name: user_xsjs
+    type: nodejs
+    path: user_xsjs
+    provides:
+      - name: user_xsjs_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: openSAPHANA6_18-uaa
+      - name: hdi_user_db
+      - name: user_db
 resources:
   - name: openSAPHANA6_18-uaa
     type: com.sap.xs.uaa-space
@@ -97,3 +117,8 @@ resources:
     type: org.cloudfoundry.existing-service
     parameters:
       service-name: CROSS_SCHEMA_SFLIGHT_18
+  - name: ui5-lib
+    type: configuration
+    parameters:
+      provider-id: 'com.sap.ui5.dist.sapui5-dist-xsa.XSAC_UI5_FESV3:sapui5_fesv3'
+      version: '>=1.44.0'
