@@ -54,6 +54,7 @@ modules:
       - name: hdi_core_db
       - name: openSAPHANA6_18-uaa
       - name: core_db
+      - name: sap.hana.democontent.epm.services.images
 resources:
   - name: openSAPHANA6_18-uaa
     type: com.sap.xs.uaa-space
@@ -85,3 +86,9 @@ resources:
       service-name: openSAP.CentralDB.opensap-central-container
     properties:
       central-db-name: '${service-name}'
+  - name: sap.hana.democontent.epm.services.images
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: sap.hana.democontent.epm.services.images.18
+    properties:
+      xshttpdest-images-service-name: '${service-name}'
