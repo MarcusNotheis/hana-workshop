@@ -1,7 +1,15 @@
 {
 	"welcomeFile": "index.html",
 	"authenticationMethod": "route",
+	"websockets": {
+		"enabled": true
+	},
 	"routes": [{
+		"source": "/node(.*)",
+		"destination": "core-node-backend",
+		"csrfProtection": true,
+		"authenticationType": "xsuaa"
+	}, {
 		"source": "/user/(.*)",
 		"destination": "user-backend"
 	}, {

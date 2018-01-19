@@ -23,6 +23,12 @@ modules:
       - name: ui5-lib
         properties:
           ui5liburl: '~{url}'
+      - name: core_node_api
+        group: destinations
+        properties:
+          name: core-node-backend
+          url: '~{url}'
+          forwardAuthToken: true
   - name: core_db
     type: hdb
     path: core_db
@@ -76,6 +82,18 @@ modules:
       - name: openSAPHANA6_18-uaa
       - name: hdi_user_db
       - name: user_db
+  - name: core_node
+    type: nodejs
+    path: core_node
+    provides:
+      - name: core_node_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: openSAPHANA6_18-uaa
+      - name: hdi_core_db
+      - name: core_db
+      - name: CROSS_SCHEMA_SFLIGHT
 resources:
   - name: openSAPHANA6_18-uaa
     type: com.sap.xs.uaa-space
